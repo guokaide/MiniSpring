@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Bean 的定义（声明） class: Bean 的类型全名  id: Bean 的实例的别名 -->
+<beans>
+    <bean id="basebaseservice" class="com.minis.test.BaseBaseService">
+        <property type="com.minis.test.AServiceImpl" name="as" ref="aservice"/>
+    </bean>
+    <bean id="aservice" class="com.minis.test.AServiceImpl">
+        <!-- Constructor 注入 -->
+        <constructor-arg type="String" name="value" value="abc"/>
+        <constructor-arg type="int" name="level" value="3"/>
+        <!-- Setter 注入 -->
+        <property type="String" name="property1" value="Someone says"/>
+        <property type="String" name="property2" value="Hello World!"/>
+        <!-- 注入对象 -->
+        <property type="com.minis.test.BaseService" name="ref1" ref="baseservice"/>
+    </bean>
+    <bean id="baseservice" class="com.minis.test.BaseService">
+        <property type="com.minis.test.BaseBaseService" name="bbs" ref="basebaseservice"/>
+    </bean>
+</beans>

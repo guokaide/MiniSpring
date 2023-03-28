@@ -5,7 +5,16 @@ package com.minis.beans;
  */
 public interface BeanFactory {
     // 获取一个 Bean，IoC 容器的核心方法
-    Object getBean(String beanName) throws BeansException;
-    // 注册一个 BeanDefinition
-    void registerBeanDefinition(BeanDefinition beanDefinition);
+    Object getBean(String name) throws BeansException;
+
+    void registerBean(String name, Object obj);
+
+    boolean containsBean(String name);
+
+    boolean isSingleton(String name);
+
+    boolean isPrototype(String name);
+
+    Class<?> getType(String name);
+
 }

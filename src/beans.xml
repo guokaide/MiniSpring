@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!-- Bean 的定义（声明） class: Bean 的类型全名  id: Bean 的实例的别名 -->
-<beans>
-    <bean id="aservice" class="com.minis.test.AServiceImpl"></bean>
-</beans>
