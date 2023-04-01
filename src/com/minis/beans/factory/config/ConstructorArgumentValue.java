@@ -1,24 +1,22 @@
-package com.minis.beans;
+package com.minis.beans.factory.config;
 
 /**
- * Property
+ * Constructor arg value
  */
-public class PropertyValue {
+public class ConstructorArgumentValue {
     private String type;
     private String name;
     private Object value;
-    private boolean isRef;
 
-    public PropertyValue(String type, String name) {
+    public ConstructorArgumentValue(String type, String name) {
         this.type = type;
         this.name = name;
     }
 
-    public PropertyValue(String type, String name, Object value, boolean isRef) {
+    public ConstructorArgumentValue(String type, String name, Object value) {
         this.type = type;
         this.name = name;
         this.value = value;
-        this.isRef = isRef;
     }
 
     public String getType() {
@@ -43,13 +41,5 @@ public class PropertyValue {
 
     public void setValue(Object value) {
         this.value = value;
-    }
-
-    public boolean isRef() {
-        return isRef;
-    }
-
-    public void setRef(boolean ref) {
-        isRef = ref;
     }
 }

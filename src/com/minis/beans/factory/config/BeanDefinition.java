@@ -1,4 +1,4 @@
-package com.minis.beans;
+package com.minis.beans.factory.config;
 
 /**
  * Bean 的定义
@@ -11,13 +11,13 @@ public class BeanDefinition {
     // Bean 的全名
     private String className;
     // 构造器参数
-    private ArgumentValues constructorArgumentValues;
+    private ConstructArgumentValues constructorArgumentValues;
     // 属性
     private PropertyValues propertyValues;
     // Bean 的作用域
     private String scope = SCOPE_SINGLETON;
     // Bean 要在加载定义的时候创建，还是第一次获取 Bean 的时候创建
-    private boolean lazyInit = false;
+    private boolean lazyInit = true;
     // 初始化方法
     private String initMethodName;
     // Bean 的依赖
@@ -46,13 +46,13 @@ public class BeanDefinition {
         this.className = className;
     }
 
-    public ArgumentValues getConstructorArgumentValues() {
+    public ConstructArgumentValues getConstructorArgumentValues() {
         return constructorArgumentValues;
     }
 
-    public void setConstructorArgumentValues(ArgumentValues constructorArgumentValues) {
+    public void setConstructorArgumentValues(ConstructArgumentValues constructorArgumentValues) {
         this.constructorArgumentValues =
-                constructorArgumentValues != null ? constructorArgumentValues : new ArgumentValues();
+                constructorArgumentValues != null ? constructorArgumentValues : new ConstructArgumentValues();
     }
 
     public PropertyValues getPropertyValues() {

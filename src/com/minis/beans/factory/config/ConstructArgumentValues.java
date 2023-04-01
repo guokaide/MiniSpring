@@ -1,4 +1,4 @@
-package com.minis.beans;
+package com.minis.beans.factory.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,17 +6,17 @@ import java.util.List;
 /**
  * 封装 ArgumentValue
  */
-public class ArgumentValues {
-    private final List<ArgumentValue> argumentValues = new ArrayList<>();
+public class ConstructArgumentValues {
+    private final List<ConstructorArgumentValue> argumentValues = new ArrayList<>();
 
-    public ArgumentValues() {
+    public ConstructArgumentValues() {
     }
 
-    public void addArgumentValue(ArgumentValue argumentValue) {
+    public void addArgumentValue(ConstructorArgumentValue argumentValue) {
         this.argumentValues.add(argumentValue);
     }
 
-    public ArgumentValue get(int index) {
+    public ConstructorArgumentValue get(int index) {
         return this.argumentValues.get(index);
     }
 
