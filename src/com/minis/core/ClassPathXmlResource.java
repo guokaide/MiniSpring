@@ -13,7 +13,7 @@ import java.util.Iterator;
  */
 public class ClassPathXmlResource implements Resource {
 
-    // 将配置文件装载进来，生成一个迭代器，用于遍历
+    // 加载配置文件，将属性装载到迭代器中，用于后续遍历获取属性
     Iterator<Element> elementIterator;
 
     public ClassPathXmlResource(String fileName) {
