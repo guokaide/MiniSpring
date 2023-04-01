@@ -1,6 +1,8 @@
 # MiniSpring
 
-## 一. 原始 IoC 容器
+## IoC
+
+### 一. 原始 IoC 容器
 
 IoC: Inverse of Control, 控制反转
 
@@ -31,7 +33,7 @@ IoC 容器：核心职责是管理 Bean 的生命周期及依赖关系。
 
 最终，SimpleBeanFactory 既是 Bean 的工厂，同时也是 BeanDefinition 的仓库。
 
-## 二. 依赖注入
+### 二. 依赖注入
 
 **注入操作的本质，就是给 Bean 的各个属性进行赋值。**
 
@@ -94,7 +96,7 @@ Spring 支持 3 种属性注入的方式：
 >
 > 此时，可以考虑使用 Setter 注入方式来解决循环依赖问题。
 
-## 三. 支持注解
+### 三. 支持注解
 
 Spring 通过 @Autowired 注解可以在 Bean 中注入对象，例如：
 
@@ -128,3 +130,49 @@ public class Test {
     - BeforeInitialization: 通过反射解析 @Autowired 注解，创建 Bean 实例，并注入到 Bean 的属性中
     - init-method: 通过反射执行初始化方法
     - AfterInitialization: 初始化之后，执行其他操作
+
+### 四. 增强 IoC 容器
+
+#### 4.1 构建 BeanFactory 体系: 增强 BeanFactory 的扩展性
+
+> 接口隔离原则：提供不同的接口，为 BeanFactory 提供不同的特性，以便后续扩展
+
+1. BeanFactory: 注册、获取 Bean
+2. ListableBeanFactory: 查询 Bean
+3. ConfigurableBeanFactory: 为 Bean 注入 BeanPostProcessor 和依赖
+4. AutowireCapableBeanFactory: 对 Bean 进行后置处理，支持 @Autowired 注解
+5. ConfigurableListableBeanFactory: 组合了以上 4 类 BeanFactory 的能力
+
+#### 4.2 核心 IoC 引擎: 引入 DefaultListableBeanFactory，实现 Bean 的创建和管理能力
+
+#### 4.3 环境能力: 引入环境，统一存储 IoC 容器涉及的属性
+
+#### 4.4 事件能力: 完善事件发布和监听机制
+
+#### 4.5 核心应用上下文: 引入 ApplicationContext
+
+- 提供统一的上下文环境
+- 支持事件的发布和监听
+- 提供 AbstractApplicationContext，规范刷新上下文 refresh() 方法，提供默认实现类，同时支持自定义
+
+### 五. 小结
+
+#### 1. 什么是控制反转 (IoC)?
+
+**控制反转 (IoC，Inverse of Control)** 是指将程序执行的控制权从程序员反转给了框架。
+
+比如说，正常的流程是，程序员手动创建对象，管理对象的生命周期及依赖关系；而控制反转之后，对象的生命周期及依赖关系都是由框架进行管理。
+
+控制反转是一种设计思想，主要用于指导框架层面的设计。
+
+#### 2. 什么是依赖注入 (DI)?
+
+**依赖注入 (DI, Dependency Injection)** 是指不通过 `new()` 的方式在类的内部创建依赖类的对象，而是在类的外部创建好之后，通过构造函数、函数参数
+等方式传递（注入）到类的内部使用。
+
+依赖注入是一种具体的编码技巧，可以提高代码的可扩展性，因为我们可以灵活地替换依赖的类，满足开闭原则。
+
+依赖注入框架：我们可以通过依赖注入框架提供的扩展点，配置需要创建的类对象以及类与类之间的关系，就可以由框架自动创建对象、管理对象的生命周期以及
+依赖关系等。而这些事情本来是由程序员来做的。Spring 就是典型的依赖注入框架。
+
+
